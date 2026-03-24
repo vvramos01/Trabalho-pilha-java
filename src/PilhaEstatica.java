@@ -1,4 +1,5 @@
 public class PilhaEstatica {
+
     private int[] elementos;
     private int topo;
 
@@ -19,18 +20,18 @@ public class PilhaEstatica {
         if (estaCheia()) {
             System.out.println("Erro: pilha cheia!");
         } else {
-            topo++;
-            elementos[topo] = valor;
+            elementos[++topo] = valor; 
+            System.out.println("Valor " + valor + " adicionado na pilha.");
         }
     }
 
     public int pop() {
         if (estaVazia()) {
             System.out.println("Erro: pilha vazia!");
-            return -1;
+            return Integer.MIN_VALUE; 
         } else {
-            int valor = elementos[topo];
-            topo--;
+            int valor = elementos[topo--];
+            System.out.println("Valor removido: " + valor);
             return valor;
         }
     }
@@ -38,9 +39,18 @@ public class PilhaEstatica {
     public int peek() {
         if (estaVazia()) {
             System.out.println("Pilha vazia!");
-            return -1;
+            return Integer.MIN_VALUE;
         }
         return elementos[topo];
+    }
+
+    public int tamanho() {
+        return topo + 1;
+    }
+
+    public void limpar() {
+        topo = -1;
+        System.out.println("Pilha limpa!");
     }
 
     public void exibir() {
@@ -49,7 +59,7 @@ public class PilhaEstatica {
             return;
         }
 
-        System.out.println("Conteúdo da pilha:");
+        System.out.println("Conteúdo da pilha (topo -> base):");
         for (int i = topo; i >= 0; i--) {
             System.out.println(elementos[i]);
         }
